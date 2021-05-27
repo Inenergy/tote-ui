@@ -26,6 +26,8 @@
     isActive;
 
   onMount(() => {
+    config.options.scales.xAxes[0].scaleLabel.labelString = 'I, ' + $__('mA');
+    config.options.scales.yAxes[0].scaleLabel.labelString = 'U, ' + $__('mV');
     chart = new Chart(
       document.getElementById('chart').getContext('2d'),
       config
@@ -36,7 +38,7 @@
   });
 
   function monitorData() {
-    data.subscribe(data => {
+    data.subscribe((data) => {
       if (data.cellCurrent) {
         if (!isActive) startDrawing();
         addPoint({ y: data.cellVoltage, x: data.cellCurrent });
@@ -72,7 +74,9 @@
     <div class="params">
       {#each displayedParams as key}
         <div class="param">
-          <span class="label">{$__(DATA[key].label)}, {$__(DATA[key].units)}:</span>
+          <span class="label"
+            >{$__(DATA[key].label)}, {$__(DATA[key].units)}:</span
+          >
           <strong class="value">{$data[key]}</strong>
         </div>
       {/each}
@@ -84,7 +88,8 @@
           step={10}
           range={CONSTRAINTS.cellTemp}
           onChange={changeCellTemp}
-          value={$data.cellTemp} />
+          value={$data.cellTemp}
+        />
       </div>
       <div class="param special">
         <div class="centered-label">{$__('elapsed time')}:</div>
