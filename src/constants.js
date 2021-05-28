@@ -118,6 +118,7 @@ const COMMANDS = {
   setBurnerFlow: (v) => [12, v],
   getIV: () => [16, 0],
   setCellTemp: (v) => [20, (v / 10) | 0],
+  switchThermistor: v => [24, v],
 };
 
 const CONSTRAINTS = {

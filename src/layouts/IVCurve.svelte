@@ -1,6 +1,8 @@
 <script>
   import Chart from 'chart.js';
-  import zoom from 'chartjs-plugin-zoom';
+  import 'chartjs-plugin-zoom';
+  import Version from '../atoms/Version.svelte';
+  import Switch from '../atoms/Toggle.svelte';
   import Button from '../atoms/Button';
   import { onMount } from 'svelte';
   import { data } from '../stores';
@@ -66,8 +68,16 @@
   function changeCellTemp(temp) {
     ipcRenderer.send('serialCommand', COMMANDS.setCellTemp(temp));
   }
+
+  function toggleThermistor(e) {
+    ipcRenderer.send(
+      'serialCommand',
+      COMMANDS.switchThermistor(+e.target.checked)
+    );
+  }
 </script>
 
+<Version />
 <div class="layout">
   <header>{$__('operation characteristics')}</header>
   <main>
@@ -80,8 +90,12 @@
           <strong class="value">{$data[key]}</strong>
         </div>
       {/each}
+      <div class="param ">
+        <span class="label">{$__('heater')}</span>
+        <Switch on:change={toggleThermistor} />
+      </div>
       <div class="param special">
-        <div class="centered-label">{$__('set temperature')}:</div>
+        <div class="centered-label">{$__('set temperature')}, C:</div>
         <RangeInput
           style="margin:auto"
           defaultValue={initialState.cellTemp}
