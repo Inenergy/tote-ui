@@ -44,12 +44,16 @@
       if (data.cellCurrent) {
         if (!isActive) startDrawing();
         addPoint({ y: data.cellVoltage, x: data.cellCurrent });
+        ipcRenderer.send('logRow', [
+          data.cellVoltage,
+          data.cellCurrent,
+          data.cellTemp,
+        ]);
       } else if (isActive) isActive = false;
     });
   }
 
   function addPoint(p) {
-    ipcRenderer.send('logRow', [p.x, p.y]);
     points.push(p);
     chart.update();
   }
@@ -58,7 +62,7 @@
     isActive = true;
     points = [];
     chart.data.datasets[0].data = points;
-    ipcRenderer.send('startLog', ['I, ' + $__('mA'), 'U, ' + $__('mV')]);
+    ipcRenderer.send('startLog', ['I, mA', 'U, mV', 'T, C']);
   }
 
   function getIVC() {
