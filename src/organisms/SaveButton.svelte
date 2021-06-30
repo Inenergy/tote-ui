@@ -23,8 +23,8 @@
   function handleClick() {
     isActive = false;
     isSaving = true;
-    ipcRenderer.send('saveFile', logId);
-    ipcRenderer.on(logId + 'Saved', handleSaved);
+    ipcRenderer.send('saveFile');
+    ipcRenderer.on('fileSaved', handleSaved);
   }
   function handleSaved(e, err) {
     if (err) {
