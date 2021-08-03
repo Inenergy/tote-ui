@@ -16,6 +16,7 @@
   --corporate-emerald-medium: #298883;
   --corporate-grey: #969ba5;
   --corporate-grey-darken: #74787f;
+  --warning-color: #fcee21;
 }
 
 html {
@@ -97,5 +98,11 @@ h6 {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
   }
 }

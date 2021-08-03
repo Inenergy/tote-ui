@@ -13,6 +13,7 @@
   import { ipcRenderer } from 'electron';
   import { DATA, COMMANDS, CONSTRAINTS } from '../constants';
   import { __ } from '../utils/translations';
+  import Warnings from '../atoms/Warnings.svelte';
   export let chart;
 
   const displayedParams = [
@@ -81,6 +82,7 @@
   }
 </script>
 
+<Warnings />
 <Version />
 <div class="layout">
   <header>{$__('operation characteristics')}</header>

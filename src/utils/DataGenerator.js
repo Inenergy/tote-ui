@@ -5,6 +5,7 @@ const { DATA } = require('../constants');
 const generator = new EventEmitter();
 let data = JSON.parse(JSON.stringify(DATA));
 for (let key in data) data[key] = randInt(0, 100);
+data.gasConcentration = 1100;
 
 function updateData(d) {
   for (let key in data) data[key] += randInt(-5, 5);

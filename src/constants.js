@@ -1,8 +1,10 @@
+const os = require('os');
+const fs = require('fs');
+
+const isPi = process.platform === 'linux' && process.arch === 'arm';
+
 const PORT = {
-  name:
-    process.platform === 'linux' && process.arch === 'arm'
-      ? '/dev/ttyS0'
-      : 'COM5',
+  name: isPi ? '/dev/ttyS0' : 'COM5',
   baudRate: 230400,
 };
 
@@ -64,6 +66,9 @@ const DATA = {
     units: '\u02daC',
     bytes: 2,
   },
+  gasConcentration: {
+    bytes: 2,
+  },
   riformerAirFlow: {
     label: 'air flow',
     units: '%',
@@ -118,12 +123,18 @@ const COMMANDS = {
   setBurnerFlow: (v) => [12, v],
   getIV: () => [16, 0],
   setCellTemp: (v) => [20, (v / 10) | 0],
-  switchThermistor: v => [24, v],
+  switchThermistor: (v) => [24, v],
 };
 
 const CONSTRAINTS = {
   cellTemp: [0, 800],
 };
+
+const CONFIG = JSON.parse(
+  fs.readFileSync(
+    isPi ? `${os.homedir()}/tote-ui/config.json` : `config.json`
+  )
+);
 
 module.exports = {
   PORT,
@@ -132,4 +143,5 @@ module.exports = {
   FUELS,
   COMMANDS,
   CONSTRAINTS,
+  CRITICAL_CONCENTRATION: CONFIG.CRITICAL_CONCENTRATION,
 };
