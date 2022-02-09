@@ -21,6 +21,7 @@
       'cellCurrent',
       'cellTemp',
       'cellLoad',
+      'fuelConsumption',
     ],
     initialState = $data;
 
@@ -166,9 +167,6 @@
   .param {
     margin: 1.2rem 0;
     font: 2.5rem 'Oswald';
-  }
-  .param.special {
-    margin-top: 3.2rem;
   }
   .value {
     font-weight: 400;
