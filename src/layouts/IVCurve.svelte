@@ -21,7 +21,6 @@
       'cellCurrent',
       'cellTemp',
       'cellLoad',
-      'fuelConsumption',
     ],
     initialState = $data;
 
@@ -74,6 +73,10 @@
     ipcRenderer.send('serialCommand', COMMANDS.setCellTemp(temp));
   }
 
+  function changeFuelConsumption(consumption) {
+    ipcRenderer.send('serialCommand', COMMANDS.setFuelConsumption(consumption));
+  }
+
   function toggleThermistor(e) {
     ipcRenderer.send(
       'serialCommand',
@@ -109,6 +112,17 @@
           range={CONSTRAINTS.cellTemp}
           onChange={changeCellTemp}
           value={$data.cellTemp}
+        />
+      </div>
+      <div class="param special">
+        <div class="centered-label">{$__('set fuel consumption')}, {$__('ml/min')}:</div>
+        <RangeInput
+          style="margin:auto"
+          defaultValue={initialState.fuelConsumption}
+          step={5}
+          range={CONSTRAINTS.fuelConsumption}
+          onChange={changeFuelConsumption}
+          value={$data.fuelConsumption}
         />
       </div>
       <div class="param special">
@@ -154,7 +168,7 @@
     font: 2.5rem 'Oswald';
   }
   .param.special {
-    margin-top: 6rem;
+    margin-top: 3.2rem;
   }
   .value {
     font-weight: 400;

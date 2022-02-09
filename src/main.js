@@ -66,7 +66,9 @@ function listenRenderer() {
 }
 
 function removeListeners() {
-  if (serial) serial.removeAllListeners();
+  serial && serial.removeAllListeners();
+  ipcMain && ipcMain.removeAllListeners();
+  usbPort && usbPort.removeAllListeners();
 }
 
 function addPeripheralsListeners() {

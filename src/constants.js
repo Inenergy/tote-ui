@@ -124,10 +124,12 @@ const COMMANDS = {
   getIV: () => [16, 0],
   setCellTemp: (v) => [20, (v / 10) | 0],
   switchThermistor: (v) => [24, v],
+  setFuelConsumption: (v) => [28, v],
 };
 
 const CONSTRAINTS = {
   cellTemp: [0, 800],
+  fuelConsumption: [0, 250],
 };
 
 const CONFIG = JSON.parse(
