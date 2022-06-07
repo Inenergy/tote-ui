@@ -132,9 +132,9 @@ const CONSTRAINTS = {
   fuelConsumption: [0, 250],
 };
 
-const CONFIG = JSON.parse(
+const { CRITICAL_CONCENTRATION } = JSON.parse(
   fs.readFileSync(
-    isPi ? `${os.homedir()}/tote-ui/config.json` : `config.json`
+    isPi ? `${os.homedir()}/.inenergy/config.json` : `config.json`
   )
 );
 
@@ -145,5 +145,5 @@ module.exports = {
   FUELS,
   COMMANDS,
   CONSTRAINTS,
-  CRITICAL_CONCENTRATION: CONFIG.CRITICAL_CONCENTRATION,
+  CRITICAL_CONCENTRATION,
 };
