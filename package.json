@@ -66,6 +66,7 @@
   },
   "build": {
     "directories": {},
+    "rebuildDependencies": false,
     "linux": {
       "executableName": "tote-ui",
       "category": "education"
