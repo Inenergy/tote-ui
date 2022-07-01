@@ -128,7 +128,7 @@
       </div>
       <div class="param special">
         <div class="centered-label">{$__('elapsed time')}:</div>
-        <Clock />
+        <Clock isTicking={isActive} />
       </div>
     </div>
     <div class="chart">
