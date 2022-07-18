@@ -26,6 +26,7 @@
     initialState = $data;
 
   let points = [],
+    isTicking,
     isActive;
 
   onMount(() => {
@@ -83,6 +84,7 @@
       'serialCommand',
       COMMANDS.switchThermistor(+e.target.checked)
     );
+    isTicking = e.target.checked;
   }
 </script>
 
@@ -128,7 +130,7 @@
       </div>
       <div class="param special">
         <div class="centered-label">{$__('elapsed time')}:</div>
-        <Clock isTicking={isActive} />
+        <Clock {isTicking} />
       </div>
     </div>
     <div class="chart">

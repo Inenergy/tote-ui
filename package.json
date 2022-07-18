@@ -1,6 +1,6 @@
 {
   "name": "tote-ui",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "GUI for micro tube fuel cell demo",
   "main": "src/main.js",
   "repository": {
