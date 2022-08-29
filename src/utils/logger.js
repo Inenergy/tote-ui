@@ -11,11 +11,11 @@ module.exports = {
     this.fileName = `MicroTubes_${await this._getFileID()}.tsv`;
     this.filePath = path.join(this.logsDir, this.fileName);
     this.ws = fs.createWriteStream(this.filePath);
-    this.ws.write(headers.concat('\n').join('\t'), 'ascii');
+    this.ws.write(headers.concat('\n').join('\t'), 'binary');
   },
   writeRow(row) {
     if (!this.ws) return;
-    this.ws.write(row.concat('\n').join('\t'), 'ascii');
+    this.ws.write(row.concat('\n').join('\t'), 'binary');
   },
   saveFile(dir, cb) {
     fs.copyFile(this.filePath, path.join(dir, this.fileName), (err) => {

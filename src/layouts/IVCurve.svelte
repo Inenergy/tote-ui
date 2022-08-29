@@ -64,7 +64,7 @@
     isActive = true;
     points = [];
     chart.data.datasets[0].data = points;
-    ipcRenderer.send('startLog', ['U, mV', 'I, mA', 'T, C']);
+    ipcRenderer.send('startLog', [`U, mV`, `I, mA`, 'T, °C']);
   }
 
   function getIVC() {
@@ -107,7 +107,7 @@
         <Switch on:change={toggleThermistor} />
       </div>
       <div class="param special">
-        <div class="centered-label">{$__('set temperature')}, C:</div>
+        <div class="centered-label">{$__('set temperature')}, {'\u02daC'}:</div>
         <RangeInput
           style="margin:auto"
           defaultValue={initialState.cellTemp}

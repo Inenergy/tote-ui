@@ -9,8 +9,8 @@
 Когда ОС загрузится завершаем работу текущей программы через alt+f4.  
 Щелкаем правой кнопкой по рабочему столу, в контекстном меню выбираем file manager.  
 В файловом менеджере находим файл ~/.config/openbox/autostart и отрывем редактором текста.  
-Заменяем в файле название программы в автозапуске на hydrogen-energy-ui должно получиться   
-`~/inenergy-gui/dist/hydrogen-energy-ui*.AppImage > ~/.inenergy/hydrogen-energy-ui.log`  
+Заменяем в файле название программы в автозапуске на tote-ui должно получиться   
+`~/inenergy-gui/dist/tote-ui*.AppImage > ~/.inenergy/tote-ui.log`  
 Перезапускаем систему через то же контекстное меню.
 
 ***
@@ -34,8 +34,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 Теперь надо установить node коммандой `nvm install 12`  
 Можно проверить установку коммандой `node --version`
 
-Затем нужно клонировать репозиторий `git clone https://github.com/SonikDropout/hydrogen-energy-ui.git`  
-Переходим в папку с программой `cd hydrogen-energy-ui`  
+Затем нужно клонировать репозиторий `git clone https://github.com/SonikDropout/tote-ui.git`  
+Переходим в папку с программой `cd tote-ui`  
 Запускаем установочный скрипт коммандами  
 `chmod +x scripts/install.sh`  
 `./script/install.sh`  
