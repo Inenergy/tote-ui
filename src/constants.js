@@ -3,15 +3,18 @@ const fs = require('fs');
 
 const isPi = process.platform === 'linux' && process.arch === 'arm';
 
+// идентификатор серийного порта для raspberry OS и windows
 const PORT = {
   name: isPi ? '/dev/ttyS0' : 'COM5',
   baudRate: 230400,
 };
 
+// разделители в двоичном виде
 const DIVIDERS = Buffer.alloc(4);
 DIVIDERS.writeUInt16BE(7581);
 DIVIDERS.writeUInt16BE(8887, 2);
 
+// структура, описывающая массив данных с платы управления
 const DATA = {
   cellVoltage: {
     label: 'voltage',
@@ -106,17 +109,7 @@ const DATA = {
   },
 };
 
-const FUELS = [
-  {
-    label: 'hydrogen',
-    value: 0,
-  },
-  {
-    label: 'butane',
-    value: 1,
-  },
-];
-
+// комманды, функции принимающие значения и возвращающие массив для отправки на МК
 const COMMANDS = {
   setFuelType: (v) => [4, v],
   setRiformerFlow: (v) => [8, v],
@@ -127,11 +120,13 @@ const COMMANDS = {
   setFuelConsumption: (v) => [28, v],
 };
 
+// ограничения полей ввода
 const CONSTRAINTS = {
   cellTemp: [0, 800],
   fuelConsumption: [0, 250],
 };
 
+// чтение сохраненной калибровки датчика водорода
 const { CRITICAL_CONCENTRATION } = JSON.parse(
   fs.readFileSync(
     isPi ? `${os.homedir()}/.inenergy/config.json` : `config.json`
