@@ -47,7 +47,7 @@ function writeCommandFromQueue() {
   serial.write(cmd);
   serial.once('data', (buf) => {
     console.log('Recieved answer:', buf);
-    if (buf.toString('ascii') != 'ok') {
+	if (!buf.toString('ascii').startsWith('ok')) {
       commandQueue.unshift(cmd);
     }
     writeCommandFromQueue();
